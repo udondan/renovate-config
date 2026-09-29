@@ -1,0 +1,34 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Shared Renovate config for udondan repositories",
+  "extends": ["config:recommended", ":semanticCommitTypeAll(chore)"],
+  "semanticCommits": "enabled",
+  "labels": ["renovate"],
+  "minimumReleaseAge": "3 days",
+  "automerge": true,
+  "automergeType": "pr",
+  "automergeStrategy": "squash",
+  "rebaseWhen": "behind-base-branch",
+  "packageRules": [
+    {
+      "description": "ESLint plugins and configs have peer dependencies on eslint, typescript-eslint and prettier. Updated separately, npm fails with ERESOLVE.",
+      "groupName": "lint tooling",
+      "matchDatasources": ["npm"],
+      "matchPackageNames": [
+        "eslint",
+        "@eslint/js",
+        "typescript-eslint",
+        "@typescript-eslint/**",
+        "eslint-config-*",
+        "eslint-plugin-*",
+        "prettier"
+      ]
+    },
+    {
+      "description": "rubocop extensions depend on the rubocop version.",
+      "groupName": "rubocop",
+      "matchDatasources": ["rubygems"],
+      "matchPackageNames": ["rubocop", "rubocop-*"]
+    }
+  ]
+}
