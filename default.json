@@ -9,7 +9,29 @@
   "automergeType": "pr",
   "automergeStrategy": "squash",
   "rebaseWhen": "behind-base-branch",
+  "prHourlyLimit": 10,
+  "lockFileMaintenance": { "enabled": true },
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**"
+  ],
   "packageRules": [
+    {
+      "description": "Exact versions in package.json.",
+      "matchManagers": ["npm"],
+      "matchDepTypes": [
+        "dependencies",
+        "devDependencies",
+        "optionalDependencies"
+      ],
+      "rangeStrategy": "pin"
+    },
+    {
+      "description": "Keep Cargo.toml in sync with Cargo.lock.",
+      "matchManagers": ["cargo"],
+      "rangeStrategy": "bump"
+    },
     {
       "description": "ESLint plugins and configs have peer dependencies on eslint, typescript-eslint and prettier. Updated separately, npm fails with ERESOLVE.",
       "groupName": "lint tooling",
