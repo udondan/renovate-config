@@ -1,7 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": "Shared Renovate config for udondan repositories",
-  "extends": ["config:recommended", ":semanticCommitTypeAll(chore)"],
+  "extends": [
+    "config:recommended",
+    ":semanticCommitTypeAll(chore)",
+    "helpers:pinGitHubActionDigests"
+  ],
   "semanticCommits": "enabled",
   "labels": ["renovate"],
   "minimumReleaseAge": "3 days",
@@ -51,6 +55,12 @@
       "groupName": "rubocop",
       "matchDatasources": ["rubygems"],
       "matchPackageNames": ["rubocop", "rubocop-*"]
+    },
+    {
+      "description": "First-party actions keep their version tags. Third-party actions are pinned to a commit SHA.",
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["actions/**", "github/**"],
+      "pinDigests": false
     }
   ]
 }
