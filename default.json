@@ -6,6 +6,7 @@
     ":semanticCommitTypeAll(chore)",
     "helpers:pinGitHubActionDigests"
   ],
+  "mode": "full",
   "semanticCommits": "enabled",
   "labels": ["renovate"],
   "minimumReleaseAge": "3 days",

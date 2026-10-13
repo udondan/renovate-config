@@ -12,6 +12,7 @@ Shared [Renovate](https://docs.renovatebot.com/) config for my repositories.
 ## What it does
 
 - Extends `config:recommended`, all commits use the `chore` type
+- Runs in full mode, so repos the Mend app adds in silent mode still get PRs and the Dependency Dashboard
 - Waits 3 days after a release before updating
 - Automerges all updates, majors included, with squash, and labels them with `renovate`
 - Rebases PRs when they fall behind the base branch
