@@ -57,12 +57,6 @@
       "groupName": "rubocop",
       "matchDatasources": ["rubygems"],
       "matchPackageNames": ["rubocop", "rubocop-*"]
-    },
-    {
-      "description": "First-party actions keep their version tags. Third-party actions are pinned to a commit SHA.",
-      "matchManagers": ["github-actions"],
-      "matchPackageNames": ["actions/**", "github/**"],
-      "pinDigests": false
     }
   ]
 }

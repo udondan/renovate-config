@@ -23,6 +23,7 @@ Shared [Renovate](https://docs.renovatebot.com/) config for my repositories.
   ([npm/cli#9800](https://github.com/npm/cli/issues/9800))
 - Scans test and example directories too, only `node_modules`, `bower_components` and `vendor` are ignored
 - Pins npm dependencies to exact versions, bumps Cargo.toml ranges
+- Pins all GitHub Actions, first-party ones included, to commit SHAs
 - Groups npm lint tooling (eslint, typescript-eslint, prettier, eslint plugins and configs) into one PR, because of their peer dependencies
 - Groups rubocop and its extensions into one PR
 
