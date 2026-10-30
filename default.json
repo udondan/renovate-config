@@ -63,6 +63,16 @@
       "matchManagers": ["github-actions"],
       "matchPackageNames": ["actions/**", "github/**"],
       "pinDigests": false
+    },
+    {
+      "description": "Own packages, actions and images are updated right away, without waiting for the minimum release age.",
+      "matchPackageNames": ["@udondan/**", "udondan/**", "github.com/udondan/**"],
+      "minimumReleaseAge": "0 days"
+    },
+    {
+      "description": "Own packages without the udondan name, such as unscoped npm packages, matched by their source repository.",
+      "matchSourceUrls": ["https://github.com/udondan/**"],
+      "minimumReleaseAge": "0 days"
     }
   ]
 }
