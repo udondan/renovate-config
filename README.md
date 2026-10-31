@@ -24,6 +24,9 @@ Shared [Renovate](https://docs.renovatebot.com/) config for my repositories.
   packages with `bundleDependencies` (e.g. `aws-cdk-lib`) with `EALLOWREMOTE`
   ([npm/cli#9800](https://github.com/npm/cli/issues/9800))
 - Scans test and example directories too, only `node_modules`, `bower_components` and `vendor` are ignored
+- Pins GitHub Actions to a commit SHA, except the first-party `actions/*` and `github/*` and
+  `udondan/wait-for-turn`, whose reusable workflow is used by its major tag (`@v1`) so every
+  release reaches all repos without update PRs
 - Pins npm dependencies to exact versions, bumps Cargo.toml ranges
 - Groups npm lint tooling (eslint, typescript-eslint, prettier, eslint plugins and configs) into one PR, because of their peer dependencies
 - Groups rubocop and its extensions into one PR

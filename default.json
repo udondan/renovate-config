@@ -65,6 +65,12 @@
       "pinDigests": false
     },
     {
+      "description": "The reusable workflow of wait-for-turn is used by its major tag, so every release reaches all repos without update PRs. It runs the action of its own commit.",
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["udondan/wait-for-turn"],
+      "pinDigests": false
+    },
+    {
       "description": "Own packages, actions and images are updated right away, without waiting for the minimum release age.",
       "matchPackageNames": ["@udondan/**", "udondan/**", "github.com/udondan/**"],
       "minimumReleaseAge": "0 days"
