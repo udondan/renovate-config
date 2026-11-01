@@ -65,9 +65,9 @@
       "pinDigests": false
     },
     {
-      "description": "The reusable workflow of wait-for-turn is used by its major tag, so every release reaches all repos without update PRs. It runs the action of its own commit.",
+      "description": "The reusable workflow of priority-boarding is used by its major tag, so every release reaches all repos without update PRs. It runs the action of its own commit.",
       "matchManagers": ["github-actions"],
-      "matchPackageNames": ["udondan/wait-for-turn"],
+      "matchPackageNames": ["udondan/priority-boarding"],
       "pinDigests": false
     },
     {
