@@ -11,7 +11,7 @@ Shared [Renovate](https://docs.renovatebot.com/) config for my repositories.
 
 ## What it does
 
-- Extends `config:recommended`, all commits use the `chore` type
+- Extends `config:recommended`, updates use `chore(deps)`, runtime dependencies `build(deps)` (see [Releases](#releases))
 - Runs in full mode, so repos the Mend app adds in silent mode still get PRs and the Dependency Dashboard
 - Waits 3 days after a release before updating, except for own packages, actions and images
   (`@udondan/*`, `udondan/*`, `github.com/udondan/*` or a source repository under
@@ -32,3 +32,43 @@ Shared [Renovate](https://docs.renovatebot.com/) config for my repositories.
 - Groups rubocop and its extensions into one PR
 
 Repos only add settings in their own `renovate.json` when there is a reason, documented in a `description`.
+
+## Releases
+
+release-please only opens a release PR when the changelog would have an entry. Updates of dependencies that ship to users
+use the `build(deps)` type, which the release-please config of the repos shows under "Dependencies". All other updates
+(dev and test dependencies, CI actions, tools in `mise.toml`, lock file maintenance) use `chore(deps)`, which is hidden, so
+they don't cause a release.
+
+`build(deps)` is used for:
+
+| Manager | File | Dependency types |
+| --- | --- | --- |
+| npm | root `package.json` | `dependencies`, `optionalDependencies`, `peerDependencies` |
+| pep621, poetry | root `pyproject.toml` | `project.dependencies`, `project.optional-dependencies`, `dependencies`, `extras` |
+| cargo | root `Cargo.toml` | `dependencies`, `workspace.dependencies` |
+| swift | root `Package.swift` | all |
+| gomod | root `go.mod` | `require` |
+| github-actions | root `action.yml` | all |
+
+When one PR updates a dependency in several places, Renovate uses the highest type of all of them, so a runtime update is
+never hidden behind a dev update in the same PR.
+
+Repos that ship more than that add a rule to their own `renovate.json`, e.g. a Docker image (final stage base image,
+lock file maintenance) or a package in a subdirectory:
+
+```json
+{
+  "description": "The Docker image ships the final stage base image and the locked dependencies.",
+  "matchManagers": ["dockerfile"],
+  "matchDepTypes": ["final"],
+  "semanticCommitType": "build"
+}
+```
+
+The matching `changelog-sections` in `release-please-config.json`:
+
+```json
+{ "type": "build", "scope": "deps", "section": "Dependencies" },
+{ "type": "chore", "scope": "deps", "section": "Dependencies (dev)", "hidden": true },
+```

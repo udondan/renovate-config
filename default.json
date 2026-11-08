@@ -79,6 +79,46 @@
       "description": "Own packages without the udondan name, such as unscoped npm packages, matched by their source repository.",
       "matchSourceUrls": ["https://github.com/udondan/**"],
       "minimumReleaseAge": "0 days"
+    },
+    {
+      "description": "Runtime dependencies of an npm package use the build type. release-please only releases for build(deps), chore(deps) stays out of the changelog. Only the root package.json ships.",
+      "matchManagers": ["npm"],
+      "matchFileNames": ["package.json"],
+      "matchDepTypes": ["dependencies", "optionalDependencies", "peerDependencies"],
+      "semanticCommitType": "build"
+    },
+    {
+      "description": "Runtime dependencies of a Python package use the build type, see above.",
+      "matchManagers": ["pep621", "poetry"],
+      "matchFileNames": ["pyproject.toml"],
+      "matchDepTypes": ["project.dependencies", "project.optional-dependencies", "dependencies", "extras"],
+      "semanticCommitType": "build"
+    },
+    {
+      "description": "Runtime dependencies of a Rust crate use the build type, see above.",
+      "matchManagers": ["cargo"],
+      "matchFileNames": ["Cargo.toml"],
+      "matchDepTypes": ["dependencies", "workspace.dependencies"],
+      "semanticCommitType": "build"
+    },
+    {
+      "description": "Dependencies of a Swift package use the build type, see above. Package.swift has no dev dependencies.",
+      "matchManagers": ["swift"],
+      "matchFileNames": ["Package.swift"],
+      "semanticCommitType": "build"
+    },
+    {
+      "description": "Dependencies of a Go module use the build type, see above. Indirect dependencies and tools stay chore.",
+      "matchManagers": ["gomod"],
+      "matchFileNames": ["go.mod"],
+      "matchDepTypes": ["require"],
+      "semanticCommitType": "build"
+    },
+    {
+      "description": "Actions used by a published action use the build type, see above. Actions in .github are CI and stay chore.",
+      "matchManagers": ["github-actions"],
+      "matchFileNames": ["action.yml", "action.yaml"],
+      "semanticCommitType": "build"
     }
   ]
 }
