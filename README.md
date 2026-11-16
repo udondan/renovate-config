@@ -30,7 +30,9 @@ Shared [Renovate](https://docs.renovatebot.com/) config for my repositories.
   `udondan/boarding-gate`, whose reusable workflow is used by its major tag (`@v1`) so every
   release reaches all repos without update PRs
 - Pins npm dependencies to exact versions, bumps Cargo.toml ranges
-- Groups npm lint tooling (eslint, typescript-eslint, prettier, eslint plugins and configs) into one PR, because of their peer dependencies
+- Groups minor and patch updates of npm dev dependencies (and all dependencies of `package.json` files other
+  than the root one, like test apps) into one PR. Majors stay separate
+- Groups major updates of npm lint tooling (eslint, typescript-eslint, prettier, eslint plugins and configs) into one PR, because of their peer dependencies. Their minor and patch updates are in the dev dependencies group
 - Groups rubocop and its extensions into one PR
 
 Repos only add settings in their own `renovate.json` when there is a reason, documented in a `description`.
