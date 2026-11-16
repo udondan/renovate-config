@@ -20,6 +20,8 @@ Shared [Renovate](https://docs.renovatebot.com/) config for my repositories.
 - Rebases PRs when they fall behind the base branch
 - Opens up to 10 PRs per hour
 - Runs lock file maintenance
+- Checks dependencies against the [OSV](https://osv.dev/) database and opens security PRs for vulnerable
+  versions (`osvVulnerabilityAlerts`), in addition to GitHub's vulnerability alerts
 - Lets npm fetch remote tarballs when it updates lock files. npm 12 refuses registry tarballs of
   packages with `bundleDependencies` (e.g. `aws-cdk-lib`) with `EALLOWREMOTE`
   ([npm/cli#9800](https://github.com/npm/cli/issues/9800))

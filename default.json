@@ -16,6 +16,7 @@
   "rebaseWhen": "behind-base-branch",
   "prHourlyLimit": 10,
   "lockFileMaintenance": { "enabled": true },
+  "osvVulnerabilityAlerts": true,
   "npmrc": "allow-remote=all",
   "ignorePaths": [
     "**/node_modules/**",
