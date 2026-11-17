@@ -30,6 +30,8 @@ Shared [Renovate](https://docs.renovatebot.com/) config for my repositories.
   `udondan/boarding-gate`, whose reusable workflow is used by its major tag (`@v1`) so every
   release reaches all repos without update PRs
 - Pins npm dependencies to exact versions, bumps Cargo.toml ranges
+- Applies all npm rules to Bun repos too: Renovate handles a `package.json` next to a `bun.lock` with its
+  `bun` manager, not `npm`
 - Groups minor and patch updates of npm dev dependencies (and all dependencies of `package.json` files other
   than the root one, like test apps) into one PR. Majors stay separate
 - Groups major updates of npm lint tooling (eslint, typescript-eslint, prettier, eslint plugins and configs) into one PR, because of their peer dependencies. Their minor and patch updates are in the dev dependencies group
@@ -48,7 +50,7 @@ they don't cause a release.
 
 | Manager | File | Dependency types |
 | --- | --- | --- |
-| npm | root `package.json` | `dependencies`, `optionalDependencies`, `peerDependencies` |
+| npm, bun | root `package.json` | `dependencies`, `optionalDependencies`, `peerDependencies` |
 | pep621, poetry | root `pyproject.toml` | `project.dependencies`, `project.optional-dependencies`, `dependencies`, `extras` |
 | cargo | root `Cargo.toml` | `dependencies`, `workspace.dependencies` |
 | swift | root `Package.swift` | all |

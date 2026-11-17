@@ -26,7 +26,7 @@
   "packageRules": [
     {
       "description": "Exact versions in package.json.",
-      "matchManagers": ["npm"],
+      "matchManagers": ["npm", "bun"],
       "matchDepTypes": [
         "dependencies",
         "devDependencies",
@@ -42,14 +42,14 @@
     {
       "description": "Minor and patch updates of npm dev dependencies in one PR, so they cost one CI run instead of one each. Dependencies in other package.json files than the root one (test apps, examples) count as dev dependencies, as they don't ship. Majors stay separate PRs, since they can break and need their own decision.",
       "groupName": "dev dependencies",
-      "matchManagers": ["npm"],
+      "matchManagers": ["npm", "bun"],
       "matchDepTypes": ["devDependencies"],
       "matchUpdateTypes": ["minor", "patch"]
     },
     {
       "description": "See above: all dependencies of package.json files other than the root one.",
       "groupName": "dev dependencies",
-      "matchManagers": ["npm"],
+      "matchManagers": ["npm", "bun"],
       "matchFileNames": ["*/**/package.json"],
       "matchUpdateTypes": ["minor", "patch"]
     },
@@ -98,7 +98,7 @@
     },
     {
       "description": "Runtime dependencies of an npm package use the build type. release-please only releases for build(deps), chore(deps) stays out of the changelog. Only the root package.json ships.",
-      "matchManagers": ["npm"],
+      "matchManagers": ["npm", "bun"],
       "matchFileNames": ["package.json"],
       "matchDepTypes": ["dependencies", "optionalDependencies", "peerDependencies"],
       "semanticCommitType": "build"
